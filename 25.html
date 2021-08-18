@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="420" height="420"></canvas>
+<script>
+    const canvas = document.getElementById('canvas')
+    const ctx = canvas.getContext('2d')
+
+    ctx.beginPath()
+    ctx.moveTo(100, 100)
+    ctx.lineTo(200, 100)
+    ctx.arcTo(300, 100, 350, 250, 100)
+    ctx.stroke()
+
+    ctx.beginPath()
+    ctx.fillStyle = '#74787a'
+    ctx.fillRect(195, 95, 10, 10)
+
+    ctx.beginPath()
+    ctx.fillStyle = '#2f90b9'
+    ctx.fillRect(295, 95, 10, 10)
+
+    ctx.beginPath()
+    ctx.fillStyle = '#45b787'
+    ctx.fillRect(345, 245, 10, 10)
+
+    ctx.beginPath()
+    ctx.setLineDash([10, 5])
+    ctx.moveTo(200, 100)
+    ctx.lineTo(300, 100)
+    ctx.stroke()
+
+    ctx.beginPath()
+    ctx.setLineDash([10, 5])
+    ctx.moveTo(300, 100)
+    ctx.lineTo(350, 250)
+    ctx.stroke()
+</script>
+</body>
+</html>
