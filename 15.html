@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="200" height="200"></canvas>
+<script>
+    const canvas = document.getElementById('canvas')
+    const ctx = canvas.getContext('2d')
+
+    const path = new Path2D()
+    path.moveTo(50, 50)
+    path.lineTo(150, 50)
+    path.lineTo(150, 150)
+    path.closePath()
+
+    ctx.strokeStyle = '#1ba784'
+    ctx.stroke(path)
+</script>
+</body>
+</html>
