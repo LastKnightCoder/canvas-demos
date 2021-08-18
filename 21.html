@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="500"></canvas>
+<script>
+    const canvas = document.getElementById('canvas')
+    const ctx = canvas.getContext('2d')
+
+    ctx.fillStyle = '#1ba784'
+    ctx.fillRect(100, 100, 50, 50)
+
+    ctx.save()
+    ctx.fillStyle = '#c4d7d6'
+    ctx.fillRect(160, 100, 50, 50)
+
+    ctx.save()
+    ctx.fillStyle = '#2486b9'
+    ctx.fillRect(220, 100, 50, 50)
+
+    ctx.restore()
+    ctx.fillRect(280, 100, 50, 50)
+
+    ctx.restore()
+    ctx.fillRect(340, 100, 50, 50)
+</script>
+</body>
+</html>
