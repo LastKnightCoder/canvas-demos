@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" height="160"></canvas>
+<script>
+    const canvas = document.getElementById('canvas')
+    const ctx = canvas.getContext('2d')
+    const { PI } = Math
+
+    const roundedRect = (x, y, w, h, r, ctx) => {
+        ctx.beginPath()
+        ctx.moveTo(x + r, y)
+        ctx.lineTo(x + w - r, y)
+        ctx.arc(x + w - r, y + r, r, -PI / 2, 0)
+        ctx.lineTo(x + w, y + h - r)
+        ctx.arc(x + w - r, y + h - r, r, 0, PI / 2)
+        ctx.lineTo(x + r, y + h)
+        ctx.arc(x + r, y + h - r, r, PI / 2, PI)
+        ctx.lineTo(x, y + r)
+        ctx.arc(x + r, y + r, r, PI, 3 * PI / 2)
+        ctx.stroke()
+    }
+
+    roundedRect(50, 50, 200, 100, 10, ctx)
+</script>
+</body>
+</html>
