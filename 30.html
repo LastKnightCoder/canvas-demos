@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+<script>
+    const canvas = document.getElementById('canvas')
+    const ctx = canvas.getContext('2d')
+    ctx.globalCompositeOperation = 'destination-over'
+
+    const { cos, sin, atan: arctan, sqrt, PI } = Math
+
+    const x = 100, y = 100
+    const r = 50
+    const theta = PI / 3
+    const h = 4 * (1 - cos(theta / 2)) / (3 * sin(theta / 2)) * r
+    const phi = arctan(h / r)
+
+    const x1 = x + r, y1 = y - h
+    const x2 = x + sqrt(r * r + h * h) * cos(theta - phi), y2 = y - sqrt(r * r + h * h) * sin(theta - phi)
+
+    // 绘制贝塞尔曲线上的点
+    ctx.fillStyle = '#45b787'
+    ctx.fillRect(x + r, y, 5, 5)
+    ctx.fillRect(x1, y1, 5, 5)
+    ctx.fillRect(x2, y2, 5, 5)
+    ctx.fillRect(x + r * cos(theta), y - r * sin(theta), 5, 5)
+    
+    // 绘制贝塞尔曲线
+    ctx.beginPath()
+    ctx.moveTo(x + r, y)
+    ctx.bezierCurveTo(x1, y1, x2, y2, x + r * cos(theta), y - r * sin(theta))
+    ctx.strokeStyle = '#e16723'
+    ctx.lineWidth = 3
+    ctx.stroke()
+
+    // 绘制一个真正的圆
+    ctx.beginPath()
+    ctx.strokeStyle = '#2b312c'
+    ctx.lineWidth = 1
+    ctx.arc(100, 100, 50, 0, 2 * Math.PI)
+    ctx.stroke()
+
+</script>
+</body>
+</html>
