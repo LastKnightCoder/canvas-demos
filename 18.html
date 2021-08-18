@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+<script>
+    const canvas = document.getElementById('canvas')
+    const ctx = canvas.getContext('2d')
+
+    ctx.strokeStyle = 'black'
+    ctx.lineWidth = 20
+    ctx.moveTo(50, 50)
+    ctx.lineTo(50, 150)
+    ctx.stroke()
+
+    // 开始绘制一个新的路径，但是没有调用 beginPath 方法，之前的路径会以新的样式再次绘制
+    ctx.strokeStyle = 'green'
+    ctx.lineWidth = 3
+    ctx.moveTo(150, 50)
+    ctx.lineTo(150, 150)
+    ctx.stroke()
+</script>
+</body>
+</html>
