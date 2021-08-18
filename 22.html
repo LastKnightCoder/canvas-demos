@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+<script>
+    const canvas = document.getElementById('canvas')
+    const ctx = canvas.getContext('2d')
+    const { cos, sin } = Math
+
+    const arc = (x, y, r, startAngle, endAngle, ctx) => {
+        ctx.beginPath()
+        ctx.moveTo(x + r * cos(startAngle), y + r * sin(startAngle))
+        for(let angle = startAngle; angle <= endAngle; angle += 0.1) {
+            ctx.lineTo(x + r * cos(angle), y + r * sin(angle))
+        }
+        ctx.stroke()
+    }
+
+    arc(100, 50, 50, 0, Math.PI, ctx)
+</script>
+</body>
+</html>
