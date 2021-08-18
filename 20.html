@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="500"></canvas>
+<script>
+    const canvas = document.getElementById('canvas')
+    const ctx = canvas.getContext('2d')
+
+    ctx.fillStyle = '#29b7cb'
+    ctx.beginPath()
+    ctx.fillRect(100, 100, 100, 100)
+
+    // 保存当前的绘图状态
+    ctx.save()
+
+    // 设置新的填充颜色
+    ctx.fillStyle = '#1ba784'
+    ctx.beginPath()
+    ctx.moveTo(250, 100)
+    ctx.lineTo(350, 100)
+    ctx.lineTo(350, 200)
+    ctx.closePath()
+    ctx.fill()
+
+    // 恢复之前的绘图状态
+    ctx.restore()
+
+    ctx.fillRect(400, 100, 100, 100)
+</script>
+</body>
+</html>
