@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+
+  <script>
+    // 获得 DOM 元素
+    const canvas = document.getElementById('canvas')
+    // 获得 2d 绘制上下文
+    const ctx = canvas.getContext('2d')
+    // 设置填充颜色
+    ctx.fillStyle = 'rgb(207, 85, 119)'
+    // 绘制一个左上角在 (0, 0)，长宽为 150 * 100 的矩形
+    ctx.fillRect(0, 0, 150, 100)
+  </script>
+</body>
+</html>
