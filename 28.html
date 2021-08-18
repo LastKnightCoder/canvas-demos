@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+<script>
+    const canvas = document.getElementById('canvas')
+    const ctx = canvas.getContext('2d')
+    ctx.globalCompositeOperation = 'destination-over'
+
+    const quadraticCurveTo = (x1, y1, x2, y2, x3, y3, ctx) => {
+        ctx.beginPath()
+        ctx.moveTo(x1, y1)
+        for (let t = 0; t <= 1; t += 0.01) {
+            const x = (1 - t) * (1 - t) * x1 + 2 * (1 - t) * t * x2 + t * t * x3
+            const y = (1 - t) * (1 - t) * y1 + 2 * (1 - t) * t * y2 + t * t * y3
+            ctx.lineTo(x, y)
+        }
+        ctx.stroke()
+    }
+
+    quadraticCurveTo(100, 100, 150, 50, 200, 100, ctx)
+
+    ctx.beginPath()
+    ctx.fillStyle = '#7e2065'
+    ctx.fillRect(95, 95, 10, 10)
+
+    ctx.beginPath()
+    ctx.fillStyle = '#f03752'
+    ctx.fillRect(145, 45, 10, 10)
+
+    ctx.beginPath()
+    ctx.fillStyle = '#2486b9'
+    ctx.fillRect(195, 95, 10, 10)
+</script>
+</body>
+</html>
