@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="300" height="200"></canvas>
+<script>
+    const canvas = document.getElementById('canvas')
+    const ctx = canvas.getContext('2d')
+    ctx.globalCompositeOperation = 'destination-over'
+
+    const bezierCurveTo = (x1, y1, x2, y2, x3, y3, x4, y4, ctx) => {
+        ctx.beginPath()
+        ctx.moveTo(x1, y1)
+        for (let t = 0; t <= 1; t += 0.01) {
+            const x = Math.pow(1 - t, 3) * x1 +
+                3 * Math.pow(1 - t, 2) * t * x2 +
+                3 *  (1 - t) * Math.pow(t, 2) * x3 +
+                Math.pow(t, 3) * x4
+            const y = Math.pow(1 - t, 3) * y1 +
+                3 * Math.pow(1 - t, 2) * t * y2 +
+                3 * (1 - t) * Math.pow(t, 2) * y3 +
+                Math.pow(t, 3) * y4
+            ctx.lineTo(x, y)
+        }
+        ctx.stroke()
+    }
+
+    bezierCurveTo(50, 100, 100, 150, 150, 100, 200, 150, ctx)
+
+    ctx.beginPath()
+    ctx.fillStyle = '#7e2065'
+    ctx.fillRect(45, 95, 10, 10)
+
+    ctx.beginPath()
+    ctx.fillStyle = '#f03752'
+    ctx.fillRect(95, 145, 10, 10)
+
+    ctx.beginPath()
+    ctx.fillStyle = '#2486b9'
+    ctx.fillRect(145, 95, 10, 10)
+
+    ctx.beginPath()
+    ctx.fillStyle = '#1ba784'
+    ctx.fillRect(195, 145, 10, 10)
+</script>
+</body>
+</html>
