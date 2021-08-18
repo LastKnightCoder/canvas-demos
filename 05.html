@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+<canvas id="canvas" width="300" height="200"></canvas>
+<script>
+    const canvas = document.getElementById('canvas')
+    const ctx = canvas.getContext('2d')
+    ctx.setLineDash([2, 1])
+
+    ctx.beginPath()
+    ctx.moveTo(100, 0)
+    ctx.lineTo(100, 200)
+    ctx.stroke()
+    ctx.beginPath()
+
+    ctx.moveTo(200, 0)
+    ctx.lineTo(200, 200)
+    ctx.stroke()
+    ctx.setLineDash([])
+
+    const lineCaps = ['butt', 'round', 'square']
+    ctx.lineWidth = 10
+    for (let i = 0; i < lineCaps.length; i++) {
+        ctx.beginPath()
+        ctx.lineCap = lineCaps[i]
+        ctx.moveTo(100, 50 + 50 * i)
+        ctx.lineTo(200, 50 + 50 * i)
+        ctx.stroke()
+    }
+</script>
+</body>
+</html>
