@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="canvas" width="700" height="400"></canvas>
+
+  <script>
+    const canvas = document.getElementById('canvas')
+    const ctx = canvas.getContext('2d')
+
+    const img = new Image()
+    img.addEventListener('load', () => {
+      const width = img.width
+      const height = img.height
+      const ratio = width / height
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.width / ratio)
+
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.width / ratio)
+      const {
+        data
+      } = imageData
+
+
+      for (let i = 0; i < data.length; i += 4) {
+        const gray = 0.3 * data[i] + 0.59 * data[i + 1] + 0.11 * data[i + 2]
+        if (gray > 255 / 2) {
+          data[i] = 255
+          data[i + 1] = 255
+          data[i + 2] = 255
+        } else {
+          data[i] = 0
+          data[i + 1] = 0
+          data[i + 2] = 0
+        }
+      }
+
+      ctx.putImageData(imageData, 0, 0)
+    })
+    img.src = './car.jpeg'
+  </script>
+</body>
+
+</html>
