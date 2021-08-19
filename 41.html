@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="700" height="350"></canvas>
+<script>
+    const canvas = document.getElementById('canvas')
+    const ctx = canvas.getContext('2d')
+
+    ctx.beginPath()
+    ctx.lineWidth = 1
+    ctx.strokeStyle = '#74787a'
+    ctx.moveTo(400, 0)
+    ctx.lineTo(400, 400)
+    ctx.stroke()
+
+    const text = 'Hello World'
+    ctx.font = '40px "Merriweather"'
+    ctx.fillStyle = '#66c18c'
+
+    ctx.textAlign = 'start'
+    ctx.fillText(text, 400, 100)
+
+    ctx.textAlign = 'end'
+    ctx.fillText(text, 400, 150)
+
+    ctx.textAlign = 'center'
+    ctx.fillText(text, 400, 200)
+
+    ctx.textAlign = 'left'
+    ctx.fillText(text, 400, 250)
+
+    ctx.textAlign = 'right'
+    ctx.fillText(text, 400, 300)
+</script>
+</body>
+</html>
