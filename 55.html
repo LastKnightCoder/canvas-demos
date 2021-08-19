@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="canvas" width="700" height="400"></canvas>
+
+  <script>
+    const canvas = document.getElementById('canvas')
+    const ctx = canvas.getContext('2d')
+
+    const img = new Image()
+    img.addEventListener('load', () => {
+      const width = img.width
+      const height = img.height
+      const ratio = width / height
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.width / ratio)
+
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.width / ratio)
+      const {
+        data
+      } = imageData
+      const originalData = [...data]
+
+      const size = 14
+      const area = size * size
+      for (let i = 0; i < canvas.width / ratio; i += size) {
+        for (let j = 0; j < canvas.width; j += size) {
+          let sr = 0,
+            sg = 0,
+            sb = 0
+          for (let m = i; m < i + size; m++) {
+            for (let n = j; n < j + size; n++) {
+              const p = m * canvas.width + n
+              sr += originalData[p * 4 + 0]
+              sg += originalData[p * 4 + 1]
+              sb += originalData[p * 4 + 2]
+            }
+          }
+          sr = sr / area
+          sg = sg / area
+          sb = sb / area
+          for (let m = i; m < i + size; m++) {
+            for (let n = j; n < j + size; n++) {
+              const p = m * canvas.width + n
+              data[p * 4 + 0] = sr
+              data[p * 4 + 1] = sg
+              data[p * 4 + 2] = sb
+            }
+          }
+        }
+      }
+      ctx.putImageData(imageData, 0, 0)
+    })
+    img.src = './car.jpeg'
+  </script>
+</body>
+
+</html>
