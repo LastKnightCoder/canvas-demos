@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="300" height="260"></canvas>
+<script>
+    const canvas = document.getElementById('canvas')
+    const ctx = canvas.getContext('2d')
+
+    const { cos, sin, PI } = Math
+
+    const angleToRad = angle => angle * PI / 180
+
+    const x = 150
+    const y = 150
+
+    const r = 35
+    const R = 100
+
+    ctx.beginPath()
+    ctx.arc(x, y, r, 0, 2 * PI)
+    ctx.stroke()
+
+    ctx.beginPath()
+    ctx.arc(x, y, R, 0, 2 * PI)
+    ctx.stroke()
+    ctx.fillStyle = 'black'
+    ctx.font = '16px "Source Code Pro"'
+
+    let count = 1
+    for (let i = 0; i < 5; i++) {
+        ctx.beginPath()
+        ctx.arc(x + r * cos(angleToRad(18 + 72 * i)), y + r * sin(angleToRad(18 + 72 * i)), 3, 0, 2 * PI)
+        ctx.arc(x + R * cos(angleToRad(54 + 72 * i)), y + R * sin(angleToRad(54 + 72 * i)), 4, 0, 2 * PI)
+        ctx.fill()
+
+        ctx.beginPath()
+        ctx.fillText(count++, x + r * cos(angleToRad(18 + 72 * i)) + 5, y + r * sin(angleToRad(18 + 72 * i)) - 5)
+        ctx.fillText(count++, x + R * cos(angleToRad(54 + 72 * i)) + 5, y + R * sin(angleToRad(54 + 72 * i)) - 10)
+    }
+
+    ctx.beginPath()
+    ctx.moveTo(x + r * cos(angleToRad(18)), y + r * sin(angleToRad(18)))
+
+    for (let i = 0; i< 5; i++) {
+        ctx.lineTo(x + r * cos(angleToRad(18 + i * 72)), y + r * sin(angleToRad(18 + i * 72)))
+        ctx.lineTo(x + R * cos(angleToRad(54 + i * 72)), y + R * sin(angleToRad(54 + i * 72)))
+    }
+
+    ctx.closePath();
+    ctx.stroke()
+</script>
+</body>
+</html>
