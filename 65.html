@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="canvas" height="210"></canvas>
+
+  <script>
+    const canvas = document.getElementById('canvas')
+    const ctx = canvas.getContext('2d')
+
+    ctx.scale(1.5, 1.5)
+    ctx.fillStyle = '#0eb0c9'
+    ctx.fillRect(0, 0, 100, 100)
+
+    // 设置变换矩阵为单位矩阵，然后进行平移变换，不会受到之前变换的影响
+    ctx.setTransform(1, 0, 0, 1, 200, 100)
+    ctx.fillStyle = '#45b787'
+    ctx.fillRect(0, 0, 100, 100)
+  </script>
+</body>
+
+</html>
