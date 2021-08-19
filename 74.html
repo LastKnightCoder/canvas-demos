@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="canvas" width="400" height="400"></canvas>
+
+  <script>
+    const canvas = document.getElementById('canvas')
+    const ctx = canvas.getContext('2d')
+
+    const drawRectClockwise = (x, y, w, h) => {
+      ctx.moveTo(x, y)
+      ctx.lineTo(x + w, y)
+      ctx.lineTo(x + w, y + h)
+      ctx.lineTo(x, y + h)
+      ctx.closePath()
+    }
+
+    drawRectClockwise(50, 50, 320, 300)
+
+    ctx.arc(140, 250, 60, 0, 2 * Math.PI, true)
+
+    ctx.moveTo(280, 200)
+    ctx.lineTo(220, 300)
+    ctx.lineTo(340, 300)
+    ctx.closePath()
+    ctx.fillStyle = '#2486b9'
+    ctx.shadowColor = '#d0dfe6'
+    ctx.shadowOffsetX = 10
+    ctx.shadowOffsetY = 10
+    ctx.shadowBlur = 5
+    ctx.fill()
+
+  </script>
+</body>
+</html>
