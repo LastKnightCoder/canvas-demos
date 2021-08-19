@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="canvas" width="700" height="500"></canvas>
+
+  <script>
+    class Ball {
+      constructor(x, y, r, color = '#29b7cb') {
+        this.x = x
+        this.y = y
+        this.r = r
+        this.color = color
+      }
+
+      draw(ctx) {
+        ctx.save()
+        ctx.fillStyle = this.color
+        ctx.beginPath()
+        ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2)
+        ctx.fill()
+        ctx.restore()
+      }
+    }
+  </script>
+
+  <script>
+    const canvas = document.getElementById('canvas')
+    const ctx = canvas.getContext('2d')
+
+    const balls = []
+    for (let i = 0; i < 10; i++) {
+      balls.push(new Ball(Math.random() * (canvas.width - 100) + 50, Math.random() * (canvas.height - 100) + 50, Math.random() * 40 + 10))
+      balls[i].draw(ctx)
+    }
+
+    canvas.addEventListener('click', event => {
+      const x = event.x - canvas.getBoundingClientRect().left
+      const y = event.y - canvas.getBoundingClientRect().top
+
+      console.log(`x: ${x}, y: ${y}`);
+
+      for (let i = 0; i < balls.length; i++) {
+        const ball = balls[i]
+        ctx.save()
+        ctx.beginPath()
+        ctx.arc(ball.x, ball.y, ball.r, 0, Math.PI * 2)
+        if (ctx.isPointInPath(x, y)) {
+          ctx.fillStyle = '#45b787'
+          ctx.fill()
+        }
+        ctx.restore()
+      }
+    })
+  </script>
+</body>
+
+</html>
