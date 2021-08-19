@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="canvas" width="700" height="400"></canvas>
+
+  <script>
+    const canvas = document.getElementById('canvas')
+    const ctx = canvas.getContext('2d')
+
+    const img = new Image()
+    img.addEventListener('load', () => {
+      const width = img.width
+      const height = img.height
+      const ratio = width / height
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.width / ratio)
+
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.width / ratio)
+      const {
+        data
+      } = imageData
+      const originalData = [...data]
+
+      for (let i = 1; i < canvas.width / ratio - 1; i++) {
+        for (let j = 1; j < canvas.width - 1; j++) {
+          let sr = 0
+          let sg = 0
+          let sb = 0
+          for (let m = i - 1; m <= i + 1; m++) {
+            for (let n = j - 1; n <= j + 1; n++) {
+              const p = m * canvas.width + n
+              sr += originalData[p * 4 + 0]
+              sg += originalData[p * 4 + 1]
+              sb += originalData[p * 4 + 2]
+            }
+          }
+          const p = i * canvas.width + j
+          data[p * 4 + 0] = sr / 9
+          data[p * 4 + 1] = sg / 9
+          data[p * 4 + 2] = sb / 9
+        }
+      }
+      ctx.putImageData(imageData, 0, 0)
+    })
+    img.src = './car.jpeg'
+  </script>
+</body>
+
+</html>
