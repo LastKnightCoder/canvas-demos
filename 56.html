@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="canvas" width="150" height="120"></canvas>
+
+  <script>
+    const canvas = document.getElementById('canvas')
+    const ctx = canvas.getContext('2d')
+
+    const imageData = ctx.createImageData(100, 100)
+    const {
+      data
+    } = imageData
+
+    for (let i = 3; i < data.length; i += 4) {
+      // 透明度通道
+      data[i] = 127
+    }
+
+    ctx.putImageData(imageData, 0, 0, 0, 0, 100, 100)
+  </script>
+</body>
+
+</html>
