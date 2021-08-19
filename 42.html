@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="1000" height="150"></canvas>
+<script>
+    const canvas = document.getElementById('canvas')
+    const ctx = canvas.getContext('2d')
+
+    // 画一条水平的线，表示文字的 baseline
+    ctx.beginPath()
+    ctx.lineWidth = 1
+    ctx.strokeStyle = '#74787a'
+    ctx.moveTo(0, 100)
+    ctx.lineTo(1000, 100)
+    ctx.stroke()
+
+    const text = 'Hello World'
+    ctx.font = '20px "Merriweather"'
+    ctx.fillStyle = '#66c18c'
+
+    ctx.textBaseline = 'top'
+    ctx.fillText(text, 100, 100)
+
+    ctx.textBaseline = 'middle'
+    ctx.fillText(text, 250, 100)
+
+    ctx.textBaseline = 'bottom'
+    ctx.fillText(text, 400, 100)
+
+    ctx.textBaseline = 'alphabetic'
+    ctx.fillText(text, 550, 100)
+
+    ctx.textBaseline = 'ideographic'
+    ctx.fillText(text, 700, 100)
+
+    ctx.textBaseline = 'hanging'
+    ctx.fillText(text, 850, 100)
+</script>
+</body>
+</html>
