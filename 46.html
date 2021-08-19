@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="canvas" width="700" height="400"></canvas>
+
+  <script>
+    const canvas = document.getElementById('canvas')
+    const ctx = canvas.getContext('2d')
+
+    const img = new Image()
+    img.addEventListener('load', () => {
+      const width = img.width
+      const height = img.height
+      const ratio = width / height;
+
+      // 源图像右上角的起点为 (1400, 0)，大小为 (1400, 1400 / ratio)
+      // Canvas上部分的起点为 (0, 0)，要等比放下图片，则其大小设置为 (500, 500 / ratio)
+      ctx.drawImage(img, 1400, 0, 1400, 1400 / ratio, 0, 0, 700, 700 / ratio)
+    })
+    img.src = 'https://cdn.jsdelivr.net/gh/LastKnightCoder/ImgHosting3@master/car.48xtss925ma0.jpeg'
+  </script>
+</body>
+
+</html>
