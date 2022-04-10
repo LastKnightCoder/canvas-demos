@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #canvas, #canvas2 {
+      width: 300px;
+      height: 300px;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas" ></canvas>
+  <canvas id="canvas2"></canvas>
+
+  <script>
+    const canvas = document.getElementById('canvas');
+    const { width: w, height: h } = window.getComputedStyle(canvas);
+    canvas.width = parseInt(w);
+    canvas.height = parseInt(h);
+
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#e77c8e';
+    ctx.fillRect(100, 100, 100, 100);
+
+    const canvas2 = document.getElementById('canvas2');
+    const { width: w2, height: h2 } = window.getComputedStyle(canvas2);
+    canvas2.width = parseInt(w2) * window.devicePixelRatio;
+    canvas2.height = parseInt(h2) * window.devicePixelRatio;
+
+    const ctx2 = canvas2.getContext('2d');
+    ctx2.scale(window.devicePixelRatio, window.devicePixelRatio);
+    ctx2.fillStyle = '#e77c8e';
+    ctx2.fillRect(100, 100, 100, 100);
+  </script>
+</body>
+</html>
